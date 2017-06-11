@@ -16,7 +16,7 @@ gulp.task('default', function() {
 gulp.task('javascript', function () {
   // set up the browserify instance on a task basis
   var b = browserify({
-    entries: 'src/Game.js',
+    entries: ['src/Game.js', 'src/beach-colors.js', 'src/Cell.js', 'src/Player.js', 'lib/rot.js'],
     debug: true
   });
 
