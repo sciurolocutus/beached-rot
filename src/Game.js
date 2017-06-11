@@ -1,4 +1,7 @@
-require('rot');
+/* global ROT */
+/* global Colors */
+/* global Cell */
+/* global Player */
 
 var Game = {
     display: null,
@@ -13,7 +16,8 @@ var Game = {
 };
 
 var groundTypes = ['.', ':', '\u2234'];
-var bgColor = Colors['palesand'];
+require('./Colors');
+var bgColor = Colors.palesand;
 Game.map = {};
 Game._generateMap = function() {
     var digger = new ROT.Map.Digger();
@@ -21,6 +25,7 @@ Game._generateMap = function() {
     var digCallback = function(x, y, value) {
         if (value) { return; } /* do not store walls */
 
+        require('./Cell');
 		var c = new Cell();
 		c.x = x;
 		c.y = y;
@@ -51,5 +56,6 @@ Game._createPlayer = function(freeCells) {
     var parts = key.split(",");
     var x = parseInt(parts[0]);
     var y = parseInt(parts[1]);
+    require('./Player.js');
     this.player = new Player(x, y);
 };
