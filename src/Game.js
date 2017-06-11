@@ -1,3 +1,5 @@
+require('rot');
+
 var Game = {
     display: null,
  
@@ -6,9 +8,12 @@ var Game = {
         document.body.appendChild(this.display.getContainer());
 
 		this._generateMap();
+		this._createPlayer 
     }
 };
 
+var groundTypes = ['.', ':', '\u2234'];
+var bgColor = Colors['palesand'];
 Game.map = {};
 Game._generateMap = function() {
     var digger = new ROT.Map.Digger();
@@ -20,7 +25,7 @@ Game._generateMap = function() {
 		c.x = x;
 		c.y = y;
 		c.color = Colors['random-beachsand']();
-		c.character = '.';
+		c.character = groundTypes.random();
  
         var key = x+","+y;
         this.map[key] = c;
@@ -35,7 +40,16 @@ Game._drawWholeMap = function() {
         var parts = key.split(",");
         var x = parseInt(parts[0], 10);
         var y = parseInt(parts[1], 10);
-		this.map[key].draw(this.display); //invert the responsibility, pass in the display and let the cell draw itself
+		this.map[key].draw(this.display, bgColor); //invert the responsibility, pass in the display and let the cell draw itself
         //this.display.draw(x, y, this.map[key]);
     }
 }
+
+Game._createPlayer = function(freeCells) {
+    var index = Math.floor(ROT.RNG.getUniform() * freeCells.length);
+    var key = freeCells.splice(index, 1)[0];
+    var parts = key.split(",");
+    var x = parseInt(parts[0]);
+    var y = parseInt(parts[1]);
+    this.player = new Player(x, y);
+};
