@@ -1,17 +1,23 @@
 var Colors = function() {
-  var palesand = '#e9d4b7';
-  var lightPeachSand = '#ffdcba';
-}
+};
 
-Colors.prototype.randomColorChannel = function (min, max) {
+Colors.palesand = '#e9d4b7';
+Colors.lightPeachSand = '#ffdcba';
+
+Colors.randomColorChannel = function (min, max) {
   return Math.floor((Math.random() * (max-min) + min)).toString(16);
-}
+};
 
-Colors.prototype.randomBeachSand = function() {
-    var r = this.randomColorChannel(200, 256);
-    var g = this.randomColorChannel(200, 220);
-    var b = this.randomColorChannel(183, 186);
-    return ['#', r, g, b].join('');
-}
+Colors.randomBeachSand = function() {
+  var r = Colors.randomColorChannel(200, 256);
+  var g = Colors.randomColorChannel(200, 220);
+  var b = Colors.randomColorChannel(183, 186);
+  return ['#', r, g, b].join('');
+};
 
-module.exports = Colors;
+Colors.randomDarkBeachSand = function() {
+  var r = Colors.randomColorChannel(30, 60);
+  var g = Colors.randomColorChannel(30, 60);
+  var b = Colors.randomColorChannel(120, 146);
+  return ['#', r, g, b].join('');
+}

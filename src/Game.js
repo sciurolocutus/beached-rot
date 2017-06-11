@@ -29,7 +29,7 @@ Game._generateMap = function() {
 		var c = new Cell();
 		c.x = x;
 		c.y = y;
-		c.color = Colors['random-beachsand']();
+		c.color = Colors.randomDarkBeachSand();
 		c.character = groundTypes.random();
  
         var key = x+","+y;
@@ -38,7 +38,7 @@ Game._generateMap = function() {
     digger.create(digCallback.bind(this));
 
 	this._drawWholeMap();
-}
+};
 
 Game._drawWholeMap = function() {
     for (var key in this.map) {
@@ -48,7 +48,7 @@ Game._drawWholeMap = function() {
 		this.map[key].draw(this.display, bgColor); //invert the responsibility, pass in the display and let the cell draw itself
         //this.display.draw(x, y, this.map[key]);
     }
-}
+};
 
 Game._createPlayer = function(freeCells) {
     var index = Math.floor(ROT.RNG.getUniform() * freeCells.length);

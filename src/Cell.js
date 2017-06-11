@@ -8,4 +8,4 @@ var Cell = function() {
 
 Cell.prototype.draw = function(display, bgColor) {
 	display.draw(this.x, this.y, this.character, this.color, bgColor);
-}
+};

@@ -1,3 +1,4 @@
 #!/bin/bash
 ./compile.sh
-cp compiled.js js/
+grep -v 'require(' app.js > js/app.js
+#cp app.js js/app.js
